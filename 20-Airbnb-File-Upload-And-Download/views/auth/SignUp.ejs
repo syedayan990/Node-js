@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/output.css" />
+  </head>
+  <body class="bg-gray-100">
+    <nav class="bg-red-500 text-white shadow-md">
+      <div class="max-w-6xl mx-auto flex gap-8 px-6 py-3">
+        <a href="/" class="px-3 py-2 rounded hover:bg-red-200">Home</a>
+        <a href="/" class="px-3 py-2 rounded hover:bg-red-200">Login</a>
+      </div>
+    </nav>
+
+    <div class="flex justify-center mt-12">
+      <div class="bg-white p-8 rounded-lg shadow-lg w-[500px]">
+        <h1 class="text-3xl font-bold mb-6 text-center">
+          Register as a new user
+        </h1>
+        <form action="/Signup" method="POST" class="space-y-5">
+         
+          <%- include('../partials/error.ejs') %>
+          <!-- <% if (errors.length > 0) { %>  
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+              <strong class="font-bold">Error!</strong>
+              <span class="block sm:inline">
+                <ul>
+                  <% errors.forEach((error) => { %>
+                    <li><%= error %></li>
+                  <% }); %>
+                </ul>
+              </span>
+            </div>
+          <% } %>  -->
+
+          <input
+            id="firstName"
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            value="<%= oldInput.firstName ? oldInput.firstName : '' %>"
+            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+            required
+          />
+          <input
+            id="lastName"
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            value="<%= oldInput.lastName ? oldInput.lastName : '' %>"
+            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+          />
+          <input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="test@mail.com"
+            value="<%= oldInput.email ? oldInput.email : '' %>"
+            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+            required
+          />
+          <input
+            id="password"
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+            required
+          />
+          <input
+            id="confirmPassword"
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm password"
+            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+            required
+          />
+
+          <div class="mb-2">
+            <p class="mb-2 font-medium text-gray-700">User Type</p>
+            <label>
+              <input
+                type="radio"
+                name="userType"
+                value="guest"
+                id="guest"
+                class="h-4 w-4 accent-red-500"
+                <% oldInput.userType === 'guest' ? 'checked' : '' %>
+              />
+              <span class="font-medium text-gray-700">Guest</span>
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="userType"
+                value="host"
+                id="host"
+                class="h-4 w-4 accent-red-500"
+                <% oldInput.userType === 'host' ? 'checked' : '' %>
+              />
+              <span class="font-medium text-gray-700">Host</span>
+            </label>
+          </div>
+
+          <div class="mb-4 flex items-center gap-2">
+            <input
+              type="checkbox"
+              name="terms"
+              id="terms"
+              class="mt-1 h-4 w-4 accent-red-500"
+              required
+            />
+            <label for="terms" class="text-sm text-gray-600">
+              I agree to the
+              <a href="#" class="text-red-500 hover:underline"
+                >Terms and Conditions</a
+              >
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            class="mb-2 bg-red-500 text-white w-full py-3 rounded-lg hover:bg-red-600"
+          >
+            Register
+          </button>
+          <p class="mt-6 text-center text-sm text-gray-600">
+            Already have an account?
+            <a
+              href="/Login"
+              class="font-semibold text-red-500 hover:text-red-600"
+              >Login</a
+            >
+          </p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Add Home</title>
+
+    <link rel="stylesheet" href="/output.css" />
+  </head>
+
+  <body class="bg-gray-100">
+    <nav class="bg-red-500 text-white shadow-md">
+      <div class="max-w-6xl mx-auto flex gap-8 px-6 py-3">
+        <a href="/">Airbnb</a>
+        <a href="/homes">Homes-List</a>
+        <a href="/favourite">Favourites</a>
+        <a href="/booking">booking</a>
+        <a href="/host/host-home-list">Host Home List</a>
+        <a href="/host/add-home">Add Home</a>
+      </div>
+    </nav>
+
+    <div class="flex justify-center mt-12">
+      <div class="bg-white p-8 rounded-lg shadow-lg w-[500px]">
+        <h1 class="text-3xl font-bold mb-6 text-center">Edit your Home</h1>
+
+        <form action="/host/Edit-Host-Home" method="POST" class="space-y-5">
+          <input type="hidden" name="id" value="<%= home.id %>" />
+          <input
+            type="text"
+            name="houseName"
+            value="<%= home.houseName %>"
+            placeholder="Enter House Name"
+            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+          />
+          <input
+            type="text"
+            name="Price"
+            value="<%= home.Price %>"
+            placeholder="Price Per night"
+            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+          />
+          <input
+            type="text"
+            name="Location"
+            value="<%= home.Location %>"
+            placeholder="Location"
+            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+          />
+          <input
+            type="text"
+            name="Rating"
+            value="<%= home.Rating %>"
+            placeholder="Rating"
+            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+          />
+          <input
+            type="text"
+            name="PhotoUrl"
+            value="<%= home.PhotoUrl %>"
+            placeholder="Enter Photo URL"
+            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+          />
+          <textarea
+            name="Description"
+            placeholder="Discribe your Home"
+            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+          >
+<%= home.Description %></textarea
+          >
+
+          <input type="hidden" value="Submit" />
+          <button
+            class="bg-red-500 text-white w-full py-3 rounded-lg hover:bg-red-600"
+          >
+            Update
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

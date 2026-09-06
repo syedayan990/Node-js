@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "houseName": "Cozy Cottage",
+    "Price": "1200",
+    "Location": "Manali",
+    "Rating": "4.2",
+    "PhotoUrl": "/image/house1.png"
+  },
+  {
+    "id": "2",
+    "houseName": "Beach House",
+    "Price": "2500",
+    "Location": "Goa",
+    "Rating": "4.7",
+    "PhotoUrl": "/image/house2.png"
+  }
+]

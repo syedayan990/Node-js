@@ -1,0 +1,65 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Airbnb Home</title>
+
+  <link rel="stylesheet" href="/output.css">
+</head>
+
+<!-- <body class="bg-gray-100"> -->
+  <body class="bg-white">
+
+  <nav class="bg-red-500 text-white shadow-md">
+    <div class="max-w-6xl mx-auto flex gap-8 px-6 py-3">
+       <a href="/">Airbnb</a>
+         <a href="/homes">Homes-List</a>
+          <a href="/favourite">Favourites</a>
+         <a href="/booking">booking</a>
+          <a href="/host/host-home-list">Host Home List</a>
+        <a href="/host/add-home">Add Home</a>
+    </div>
+  </nav>
+
+  <main class="flex justify-center mt-12">
+
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+
+      <h1 class="text-3xl font-bold text-gray-800 mb-6">
+        Host hereare your registered homes
+      </h1>
+     <div class="flex flex-wrap gap-6">
+        <% registeredhomes.forEach(home => { %>
+
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
+          <img src="<%= home.PhotoUrl %>" alt="<%= home.houseName %>" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <div class="flex items-start justify-between">
+              <h2 class="text-lg font-semibold text-gray-800"><%= home.houseName %></h2>
+              </div>
+              <span class="text-sm font-bold text-red-600">₹<%= home.Price %></span>
+            
+            <p class="text-sm text-gray-500 mt-1">Location: <span class="text-gray-700"><%= home.Location %></span></p>
+            <div class="flex items-center mt-3">
+              <span class="text-sm font-medium text-yellow-500 mr-2">★</span>
+              <span class="text-sm text-gray-700"><%= home.Rating %></span>
+            </div>
+            <div class="mt-4 flex gap-2">
+              <a href="/host/Edit-home/<%= home.id %>?editing=true" class="flex-1 text-center bg-red-500 text-white py-2 rounded hover:bg-red-600">Edit </a>
+<form action="/host/delete-home/<%= home.id %>" method="post">
+  <button type="submit" class="flex-1 text-center bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Delete</button>
+</form>
+            </div>
+          </div>
+        </div>
+
+        <% }) %>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

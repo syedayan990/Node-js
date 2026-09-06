@@ -1,0 +1,81 @@
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Airbnb Home</title>
+     <link rel="stylesheet" href="output.css">
+    <!-- yaha hum directly public forder ka link de rhe h isliye ./ ka use nii kr rhe -->
+  <!-- </head>
+  <body>
+    <header>
+      <h1 class="text-red-700 text-5xl">Welcome to airbnb</h1>
+    </header>
+    <main>
+      <a href="/host/add-home">Add Home</a>
+    </main>
+  </body>
+</html>  -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!doctype html>  head is the part of partials of Head.ejs 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Airbnb Home</title>
+
+  <link rel="stylesheet" href="/output.css"> -->
+
+  <%- include('partials/Head') %>
+</head>
+
+<!-- <body class="bg-gray-100"> -->
+  <body class="bg-gray-400">
+
+
+  <!-- <header> Header is the part of partials of Header.ejs 
+  <nav class="bg-red-500 text-white shadow-md">
+    <div class="max-w-6xl mx-auto flex gap-8 px-6 py-3">
+      <a href="/" class="hover:underline">Go to Home</a>
+      <a href="/host/add-home" class="hover:underline">Add Home</a>
+    </div>
+  </nav>
+  </header> -->
+
+ <%- include('partials/Header') %>   
+  <main class="flex justify-center mt-12">
+
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+
+      <h1 class="text-3xl font-bold text-gray-800 mb-6">
+        Our Registered Homes
+      </h1>
+      <ul class="space-y-3">
+
+<% registeredhomes.forEach(home => { %>
+
+<li class="bg-gray-50 p-4 rounded-md border border-gray-200 hover:bg-red-50 hover:border-red-300 transition">
+
+<span class="text-lg font-semibold text-gray-700"><%= home.houseName %></span>
+
+</li>
+
+<% }) %>
+
+</ul>
+    </div>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Add Home</title>
+
+    <link rel="stylesheet" href="/output.css" />
+  </head>
+
+  <body class="bg-gray-100">
+      <nav class="bg-red-500 text-white shadow-md">
+    <div class="max-w-6xl mx-auto flex gap-8 px-6 py-3">
+
+      <a href="/" class="px-3 py-2 rounded hover:bg-red-200">
+        Home
+      </a>
+   
+      <% if (isLoggedIn) { %>
+         <% if (user && user.userType === 'guest') { %>
+
+        <a href="/homes" class="px-3 py-2 rounded hover:bg-red-200">
+          Homes-List
+        </a>
+
+        <a href="/favourite" class="px-3 py-2 rounded hover:bg-red-200">
+          Favourites
+        </a>
+
+        <a href="/booking" class="px-3 py-2 rounded hover:bg-red-200">
+          Booking
+        </a>
+        <% } else { %>
+        <a href="/host/host-home-list" class="px-3 py-2 rounded hover:bg-red-200">
+          Host-Home-List
+        </a>
+
+        <a href="/host/add-home" class="px-3 py-2 rounded hover:bg-red-200">
+          Add Home
+        </a>
+
+
+      <% } %>
+       <% } %>
+       
+      <% if (!isLoggedIn) { %>
+    <a href="/Signup" class="px-3 py-2 rounded hover:bg-red-200">Signup</a>
+     <a href="/Login" class="px-3 py-2 rounded hover:bg-red-200">Login</a>
+    <% } else { %>
+      <form action="/Logout" method="POST">
+        <button
+        type="submit"
+        class="hover:bg-red-400 py-2 px-4 rounded transition duration-300">
+      Logout</button>
+      </form>
+      <% } %>
+   
+
+    </div>
+  </nav>
+
+    <div class="flex justify-center mt-12">
+      <div class="bg-white p-8 rounded-lg shadow-lg w-[500px]">
+        <h1 class="text-3xl font-bold mb-6 text-center">Edit your Home</h1>
+
+<form action="/host/Edit-Host-Home" method="POST" enctype="multipart/form-data" class="space-y-5">          <input type="hidden" name="id" value="<%= home._id%>" />
+          <input
+            type="text"
+            name="houseName"
+            value="<%= home.houseName %>"
+            placeholder="Enter House Name"
+            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+          />
+          <input
+            type="text"
+            name="Price"
+            value="<%= home.Price %>"
+            placeholder="Price Per night"
+            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+          />
+          <input
+            type="text"
+            name="Location"
+            value="<%= home.Location %>"
+            placeholder="Location"
+            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+          />
+        <div class="file-input-wrapper">
+  <label for="photoInput" class="file-input-label">
+    <span class="file-input-button">Choose File</span>
+    <span id="fileNameDisplay" class="file-input-text">No file chosen</span>
+  </label>
+  <input
+    id="photoInput"
+    type="file"
+    name="Photo"
+    accept="image/jpg, image/jpeg, image/png"
+    class="file-input-hidden"
+    onchange="document.getElementById('fileNameDisplay').textContent = this.files[0] ? this.files[0].name : 'No file chosen'"
+  />
+</div>
+
+<style>
+  .file-input-wrapper {
+    width: 100%;
+  }
+
+  .file-input-label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 2px solid #f87171;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .file-input-button {
+    background-color: #ef4444;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+  }
+
+  .file-input-label:hover .file-input-button {
+    background-color: #dc2626;
+  }
+
+  .file-input-text {
+    padding: 0 0.75rem;
+    color: #6b7280;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .file-input-hidden {
+    display: none;
+  }
+</style>
+          <input
+            type="file"
+            multiple
+            name="Photo"
+            accept="image/jpg, image/jpeg, image/png"
+
+            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+          />
+          <textarea
+            name="Description"
+            placeholder="Discribe your Home"
+            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400"
+          >
+<%= home.Description %></textarea
+          >
+
+          <input type="hidden" value="Submit" />
+          <button
+            class="bg-red-500 text-white w-full py-3 rounded-lg hover:bg-red-600"
+          >
+            Update
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<header>
+  <nav class="bg-red-500 text-white shadow-md">
+    <div class="max-w-6xl mx-auto flex gap-8 px-6 py-3">
+
+      <a href="/" class="px-3 py-2 rounded hover:bg-red-200">
+        Home
+      </a>
+
+      <% if (isLoggedIn) { %>
+
+        <a href="/homes" class="px-3 py-2 rounded hover:bg-red-200">
+          Homes-List
+        </a>
+
+        <a href="/favourite" class="px-3 py-2 rounded hover:bg-red-200">
+          Favourites
+        </a>
+
+        <a href="/booking" class="px-3 py-2 rounded hover:bg-red-200">
+          Booking
+        </a>
+
+        <a href="/host/host-home-list" class="px-3 py-2 rounded hover:bg-red-200">
+          Host-Home-List
+        </a>
+
+        <a href="/host/add-home" class="px-3 py-2 rounded hover:bg-red-200">
+          Add Home
+        </a>
+
+        <a href="/logout" class="px-3 py-2 rounded hover:bg-red-200">
+          Logout
+        </a>
+
+      <% } else { %>
+
+        <a href="/Login" class="px-3 py-2 rounded hover:bg-red-200">
+          Login
+        </a>
+
+      <% } %>
+
+    </div>
+  </nav>
+</header>

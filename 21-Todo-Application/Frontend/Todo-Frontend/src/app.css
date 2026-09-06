@@ -1,0 +1,28 @@
+
+
+ input{
+    width: 100%;
+    text-align: left;
+    
+ }
+ /* button{
+     text-align: left;
+ } */
+ 
+ 
+ .app-name{
+    margin-left: -3px;
+ }
+
+.kg-button{
+   min-width: 100px;   
+}
+   /* kg-button multiple jaghe use hua h to hum isko ese hi global css mai chor dege */
+ .kg-raw{
+    margin: 10px 5px;
+    margin-left: 300px;
+
+
+ }
+
+      
