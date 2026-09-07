@@ -1,18 +1,79 @@
-# 🚀 Node.js Learning Journey
+# 🚀 Node.js Learning Journey — Airbnb Clone (Full Stack Project)
 
-A complete, hands-on **Node.js & Express.js** learning repository — starting from the absolute basics of Node.js (HTTP servers, event loop, modules) all the way up to building a full **Airbnb-clone web app** (in multiple database flavors) and a full-stack **MERN Todo Application**.
+A complete, hands-on **Node.js & Express.js** learning repository built around one central project: an **Airbnb-clone web application**, built from scratch and evolved step-by-step into a full backend system with **authentication, sessions, MongoDB (Mongoose), and file upload/download** — alongside all the core Node.js concepts practiced along the way.
 
-This repo documents my step-by-step progress while learning backend web development with Node.js.
+This repo documents my step-by-step progress while learning backend web development with Node.js, with the **Airbnb Clone as the flagship project**.
+
+---
+
+## 🏡 Flagship Project: Airbnb Clone — Full Stack Project
+
+The **Airbnb Clone** is the main project of this repository. It started as a simple Express server and was rebuilt multiple times, gaining a new real-world backend feature at every stage — ending in `20-Airbnb-Full-Stack-Project/`, a fully working listing platform with hosts, guests, bookings, favourites, authentication, and image uploads.
+
+### 🔧 Backend Features Implemented
+
+| Feature | Details |
+|---|---|
+| **REST-style Routing (Express Router)** | Routes are split into three dedicated routers — `userRouter` (guest-facing: home listing, home details, booking, favourites), `authRouter` (`/Login`, `/SignUp`, `/Logout`), and `HostRouter` (`/host/add-home`, `/host/host-home-list`, `/host/Edit-home/:homeId`, `/host/delete-home/:homeId`) — following REST-like resource conventions (GET to read, POST to create/update/delete) |
+| **MVC Architecture** | Clean separation of `Models/`, `controllers/`, `routes/`, and `views/` |
+| **Database — MongoDB + Mongoose** | Three Mongoose models: `Home` (listing details — name, price, location, rating, photo, description), `User` (firstName, lastName, email, password, userType: guest/host, favourites), and `Favourite` (linking users to saved homes). Includes a Mongoose `pre('findOneAndDelete')` hook to auto-clean favourites when a home is deleted |
+| **Authentication & Authorization** | Full Login/Signup flow via `authController` with **bcryptjs** password hashing. Host-only routes (`/host/*`) are protected by custom middleware that checks `req.isLoggedIn` and redirects guests to `/Login` |
+| **Sessions & Cookies** | Implemented with **express-session** + **connect-mongo**, storing sessions directly in MongoDB (`sessions_v2` collection) instead of memory, so login state persists across server restarts |
+| **File Upload & Download** | Image uploads for home listings handled via **Multer** — custom disk storage engine (random filename generation to avoid collisions), a file filter that only allows `.png/.jpg/.jpeg`, and static file serving from `/uploads` so uploaded images can be viewed/downloaded from the browser |
+| **Form Validation** | `express-validator` used to validate signup/add-home form inputs before they hit the database |
+| **Templating** | Server-side rendered views using **EJS**, including `views/Host`, `views/auth`, `views/store`, and `views/partials` for reusable layout components |
+| **Styling** | Tailwind CSS compiled via its CLI (`npm run tailwind`) alongside the Node server |
+
+### 📍 Key Routes
+
+```
+GET  /                          → Home / landing page
+GET  /homes                     → List all homes
+GET  /homes/:homeId              → Home details (dynamic route)
+GET  /booking                    → View bookings
+GET  /favourite                  → View favourite homes
+POST /favourite                  → Add a home to favourites
+POST /favourite/delete/:homeId   → Remove a home from favourites
+
+GET  /Login  | POST /Login       → Login page & authentication
+GET  /SignUp | POST /SignUp      → Signup page & user registration
+POST /Logout                     → Destroy session & log out
+
+GET  /host/add-home               → Form to add a new listing (protected)
+POST /host/add-home                → Create listing + upload photo (protected)
+GET  /host/host-home-list          → Host's own listings (protected)
+GET  /host/Edit-home/:homeId       → Edit listing form (protected)
+POST /host/Edit-Host-Home          → Update listing (protected)
+POST /host/delete-home/:homeId     → Delete listing (protected)
+```
+
+### 🧱 Evolution of the Airbnb Clone (Milestone History)
+
+The final full-stack version wasn't built in one go — it evolved through these stages, each one preserved in this repo as a snapshot:
+
+```
+Express-Deepdive/Project-Airbnb        → First Express version (static/basic routing)
+Express-Deepdive/Project-Airbnb-Tailwind → + Tailwind CSS styling
+dynamic-UI/Project-Airbnb-EJS           → + EJS templating (dynamic views)
+MVC/                                    → + MVC architecture refactor
+13-Airbnb-Dynamic-Path-Model            → + Dynamic routes & path-based models
+15-Airbnb-Using-SQL                     → + MySQL database integration
+16-Airbnb-Using-MongoDBBB               → + MongoDB (native driver)
+17-Airbnb-Mongoose                      → + Mongoose ODM
+18-Airbnb-Cookies-And-Sessions          → + Cookies & Sessions
+19-Airbnb-Authentication-And-Authorisation → + Login/Signup, bcrypt, Auth & Authorization
+20-Airbnb-Full-Stack-Project            → ✅ FINAL: + File Upload/Download (Multer), fully complete app
+```
 
 ---
 
 ## 📌 About This Repository
 
-This repository is a chronological collection of everything I practiced while learning Node.js — small scripts, concept demos, and progressively bigger projects. Each folder represents either:
+Besides the Airbnb Clone journey, this repo also contains the foundational Node.js concepts practiced before and alongside it, plus one extra side project (a Todo app). Each folder represents either:
 
 - A **core Node.js concept** (event loop, servers, error handling, npm), or
-- A **milestone version of an Airbnb-clone project**, rebuilt again and again while learning a new concept (dynamic routing → SQL → MongoDB → Mongoose → sessions → auth → file uploads), or
-- A **standalone full-stack project** (Todo App with React + Express + MongoDB)
+- A **milestone version of the Airbnb-clone project** (see above), or
+- A **standalone side project** (Todo App with React + Express + MongoDB)
 
 ---
 
@@ -47,22 +108,7 @@ This repository is a chronological collection of everything I practiced while le
 |---|---|
 | `MVC/` | Restructuring the Airbnb project using the **Model-View-Controller (MVC)** pattern for clean, scalable code |
 
-### 🔹 Airbnb Clone — Milestone Versions
-The same Airbnb-style listing project was rebuilt multiple times, each time adding a new backend concept:
-
-| Folder | New Concept Added |
-|---|---|
-| `13-Airbnb-Dynamic-Path-Model/` | Dynamic routes & path-based models |
-| `15-Airbnb-Using-SQL/` | Connecting the app to a **MySQL** database |
-| `16-Airbnb-Using-MongoDBBB/` | Switching the database to **MongoDB** (native driver) |
-| `17-Airbnb-Mongoose/` | Using **Mongoose** as an ODM for MongoDB |
-| `18-Airbnb-Cookies-And-Sessions/` | Implementing **cookies & sessions** |
-| `19-Airbnb-Authentication-And-Authorisation/` | Adding **login/signup, password hashing (bcrypt), auth & authorization** |
-
-### 🔹 Airbnb — Full Stack Project (Final Version)
-| Folder | What it covers |
-|---|---|
-| `20-Airbnb-Full-Stack-Project/` | The **complete, production-style version** of the Airbnb-clone — it brings together everything learned across all the milestone versions above into one final app: **MVC architecture, EJS templating, Mongoose + MongoDB, sessions & cookies, full authentication/authorization (bcrypt-hashed passwords, protected routes), form validation (express-validator), and file upload/download (Multer)** for listing images. This is the most feature-complete build in the whole repo. |
+> ℹ️ The full milestone-by-milestone breakdown of the Airbnb Clone (`13-Airbnb-Dynamic-Path-Model` → `20-Airbnb-Full-Stack-Project`) is covered in detail in the **[🏡 Flagship Project](#-flagship-project-airbnb-clone--full-stack-project)** section above.
 
 ### 🔹 Practice Sets
 | Folder | What it covers |
@@ -73,44 +119,50 @@ The same Airbnb-style listing project was rebuilt multiple times, each time addi
 | `Practice-set/13-Project-Milestone-Airbnb/` | Practice milestone checkpoint of the Airbnb project |
 | `Practice-set/Project-Milestone-Airbnb/` | Another milestone checkpoint |
 
-### 🔹 Full-Stack Project
+### 🔹 Other Side Project
 | Folder | What it covers |
 |---|---|
-| `21-Todo-Application/` | A complete **full-stack Todo application** with a separate `Backend/` (Node.js, Express, MongoDB, Mongoose, REST APIs) and `Frontend/` (React + Vite + Tailwind CSS) |
+| `21-Todo-Application/` | A small side-project full-stack Todo app (`Backend/`: Node.js, Express, MongoDB, Mongoose REST APIs · `Frontend/`: React + Vite + Tailwind CSS), built separately to practice the MERN stack |
 
 ---
 
 ## 🛠️ Tech Stack Used Across the Repo
 
 - **Runtime:** Node.js
-- **Framework:** Express.js
+- **Framework:** Express.js (Express Router, REST-style routes, middleware)
 - **Templating:** EJS
-- **Databases:** MySQL, MongoDB (native driver & Mongoose)
-- **Auth & Security:** bcryptjs, express-session, cookie-parser, connect-mongo
-- **File Handling:** Multer
+- **Databases:** MongoDB (native driver & **Mongoose ODM** — main stack for the Airbnb Clone), MySQL (used in an earlier milestone)
+- **Auth & Security:** bcryptjs (password hashing), express-session, cookie-parser, connect-mongo (MongoDB-backed sessions)
+- **File Handling:** Multer (image upload with disk storage, file-type filtering) + static file serving for download
 - **Validation:** express-validator
 - **Styling:** Tailwind CSS
-- **Frontend (Todo App):** React, Vite, React Icons
 - **Dev Tools:** nodemon, dotenv
+- **Todo App only:** React, Vite, React Icons
 
 ---
 
-## ▶️ How to Run Any Project
-
-Each folder (that contains a `package.json`) is an independent Node.js project. To run one:
+## ▶️ How to Run the Airbnb Clone (Main Project)
 
 ```bash
-# 1. Move into the project folder
-cd folder-name
+cd 20-Airbnb-Full-Stack-Project
 
-# 2. Install dependencies
+# 1. Install dependencies
 npm install
+
+# 2. Create a .env file with:
+#    MONGO_URI=your_mongodb_connection_string
+#    SESSION_SECRET=your_session_secret
+#    PORT=3000
 
 # 3. Start the server
 npm start
+
+# App runs at http://localhost:3000
 ```
 
-For the **Todo Application**, run the backend and frontend separately:
+Every other folder that contains a `package.json` is an independent Node.js project and can be run the same way (`npm install` → `npm start`).
+
+For the **Todo Application** side project, run the backend and frontend separately:
 
 ```bash
 # Backend
@@ -130,17 +182,19 @@ npm run dev
 
 ## 🎯 Purpose of This Repository
 
-This repository is not a single production app — it's a **learning log**. It shows the progression from:
+This repository is a **learning log built around one flagship project** — the Airbnb Clone. It shows the real backend progression from:
 
 ```
-Raw Node.js HTTP server → Express.js → Templating (EJS) → MVC Architecture 
-→ Databases (SQL & MongoDB) → Sessions & Auth → Airbnb Full Stack Project → Full-Stack MERN Todo App
+Raw Node.js HTTP server → Express.js → EJS Templating → MVC Architecture
+→ MySQL → MongoDB → Mongoose → Sessions & Cookies → Auth & Authorization
+→ File Upload/Download (Multer) → ✅ Airbnb Clone: Full Stack Project
 ```
 
-Feel free to explore any folder to see how a particular concept was implemented!
+Explore `20-Airbnb-Full-Stack-Project/` first to see the complete, final app — then walk backwards through the milestone folders to see how each backend concept (routing, MVC, database, sessions, auth, file handling) was added one at a time.
 
 ---
 
 ## 📄 License
 
 This project is for educational purposes.
+
