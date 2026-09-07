@@ -58,7 +58,11 @@ The same Airbnb-style listing project was rebuilt multiple times, each time addi
 | `17-Airbnb-Mongoose/` | Using **Mongoose** as an ODM for MongoDB |
 | `18-Airbnb-Cookies-And-Sessions/` | Implementing **cookies & sessions** |
 | `19-Airbnb-Authentication-And-Authorisation/` | Adding **login/signup, password hashing (bcrypt), auth & authorization** |
-| `20-Airbnb-File-Upload-And-Download/` | Handling **file uploads/downloads** with Multer |
+
+### 🔹 Airbnb — Full Stack Project (Final Version)
+| Folder | What it covers |
+|---|---|
+| `20-Airbnb-Full-Stack-Project/` | The **complete, production-style version** of the Airbnb-clone — it brings together everything learned across all the milestone versions above into one final app: **MVC architecture, EJS templating, Mongoose + MongoDB, sessions & cookies, full authentication/authorization (bcrypt-hashed passwords, protected routes), form validation (express-validator), and file upload/download (Multer)** for listing images. This is the most feature-complete build in the whole repo. |
 
 ### 🔹 Practice Sets
 | Folder | What it covers |
@@ -130,7 +134,7 @@ This repository is not a single production app — it's a **learning log**. It s
 
 ```
 Raw Node.js HTTP server → Express.js → Templating (EJS) → MVC Architecture 
-→ Databases (SQL & MongoDB) → Sessions & Auth → File Uploads → Full-Stack MERN App
+→ Databases (SQL & MongoDB) → Sessions & Auth → Airbnb Full Stack Project → Full-Stack MERN Todo App
 ```
 
 Feel free to explore any folder to see how a particular concept was implemented!
